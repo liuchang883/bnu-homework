@@ -1,0 +1,554 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+/* 全局属性 */
+#write {
+  max-width: 860px;
+  font-size: 1rem;
+  color: black;
+  padding: 0 10px;
+  line-height: 1.6;
+  word-spacing: 0px;
+  letter-spacing: 0px;
+  word-break: break-word;
+  word-wrap: break-word;
+  text-align: left;
+  font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, 'PingFang SC', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+/*段落*/
+#write + p, 
+#write blockquote p {
+  font-size: 1rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  margin: 0;
+  line-height: 1.5rem;
+  color: black;
+}
+#write div[mdtype=toc] {
+  font-size: 1rem;
+}
+
+/*标题*/
+#write h1,
+#write h2,
+#write h3,
+#write h4,
+#write h5,
+#write h6 {
+  margin: 1.2em 0 1em;
+  padding: 0px;
+  font-weight: bold;
+  color: black;
+}
+#write h1 {
+  font-size: 1.5rem;
+}
+#write h2 {
+  font-size: 1.3rem;
+  border-bottom: 2px solid rgb(239, 112, 96);
+}
+#write h2 span {
+ display: inline-block;
+ font-weight: bold;
+ background: rgb(239, 112, 96);
+ color: #ffffff;
+ padding: 3px 10px 1px;
+ border-top-right-radius: 3px;
+ border-top-left-radius: 3px;
+ margin-right: 3px;
+}
+#write h2:after {
+ display: inline-block;
+ content: "";
+ vertical-align: bottom;
+ border-bottom: 1.25rem solid #efebe9;
+ border-right: 1.25rem solid transparent;
+}
+
+#write h3 {
+  font-size: 1.3rem;
+}
+#write h4 {
+  font-size: 1.2rem;
+}
+#write h5 {
+  font-size: 1.1rem;
+}
+#write h6 {
+  font-size: 1rem;
+}
+
+/*列表*/
+#write ul,
+#write ol {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding-left: 25px;
+  color: black;
+}
+#write ul {
+  list-style-type: disc;
+}
+#write ul ul {
+  list-style-type: square;
+}
+#write ol {
+  list-style-type: decimal;
+}
+#write li section {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  line-height: 1.7rem;
+  text-align: left;
+  color: rgb(1,1,1); /* 只要是纯黑色微信编辑器就会把color这个属性吞掉。。。*/
+  font-weight: 500;
+}
+
+/*引用*/
+#write blockquote {
+  display: block;
+  font-size: .9em;
+  overflow: auto;
+  border-left: 3px solid rgb(239, 112, 96);
+  color: #6a737d;
+  padding: 10px 10px 10px 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  background: #fff9f9;
+}
+
+/*链接*/
+#write a {
+  text-decoration: none;
+  word-wrap: break-word;
+  font-weight: bold;
+  border-bottom: 1px solid #1e6bb8;
+  color: rgb(239, 112, 96);
+  border-bottom: 1px solid rgb(239, 112, 96);
+}
+
+/*行内代码*/
+#write p code,
+#write li code {
+  font-size: .9rem;
+  word-wrap: break-word;
+  padding: 2px 4px;
+  border-radius: 4px;
+  margin: 0 2px;
+  color:  rgb(239, 112, 96);;
+  background-color: rgba(27,31,35,.05);
+  font-family: Operator Mono, Consolas, Monaco, Menlo, monospace;
+  word-break: break-all;
+}
+
+/*图片*/
+#write img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+#write span img {
+  display: inline-block;
+  border-right: 0px;
+  border-left: 0px;
+}
+
+/*表格*/
+#write table {
+  display: table;
+  text-align: left;
+}
+#write tbody {
+  border: 0;
+}
+#write table tr {
+  border: 0;
+  border-top: 1px solid #ccc;
+  background-color: white;
+}
+#write table tr:nth-child(2n) {
+  background-color: #F8F8F8;
+}
+#write table tr th,
+#write table tr td {
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  text-align: left;
+}
+#write table tr th {
+  font-weight: bold;
+  background-color: #f0f0f0;
+}
+
+/* 行内代码 */
+#write span code, #write li code {
+ color: rgb(239, 112, 96);
+}
+
+/* 脚注上标 */
+#write .md-footnote {
+ font-weight: bold;
+ color: rgb(239, 112, 96);
+}
+#write .md-footnote > .md-text:before {
+ content: '['
+}
+#write .md-footnote > .md-text:after {
+ content: ']'
+}
+
+/* 脚注 */
+#write .md-def-name {
+  padding-right: 1.8ch;
+}
+#write .md-def-name:before {
+  content: '[';
+  color: #000;
+}
+#write .md-def-name:after {
+  color: #000;
+}
+
+/* 代码块主题 */
+.md-fences:before {
+  content: ' ';
+  display: block;
+  width: 100%;
+  background-size: 40px;
+  background-repeat: no-repeat;
+  background-color: #282c34;
+  margin-bottom: -7px;
+  border-radius: 5px;
+  background-position: 10px 10px;
+}
+
+/* CodeMirror 相关内容 */
+.CodeMirror-wrap .CodeMirror-scroll {
+  overflow-x: auto;
+}
+.cm-s-inner.CodeMirror {
+  padding: .5rem;
+  background-color: #292d3e;
+  color: #a6accd;
+  font-family: Consolas;
+  border-radius: 4px;
+}
+.cm-s-inner .cm-keyword {
+  color: #c792ea !important;
+}
+.cm-s-inner .cm-operator {
+  color: #89ddff !important;
+}
+.cm-s-inner .cm-variable-2 {
+  color: #eeffff !important;
+}
+.cm-s-inner .cm-variable-3,
+.cm-s-inner .cm-type {
+  color: #f07178 !important;
+}
+.cm-s-inner .cm-builtin {
+  color: #ffcb6b !important;
+}
+.cm-s-inner .cm-atom {
+  color: #f78c6c !important;
+}
+.cm-s-inner .cm-number {
+  color: #ff5370 !important;
+}
+.cm-s-inner .cm-def {
+  color: #82aaff !important;
+}
+.cm-s-inner .cm-string {
+  color: #c3e88d !important;
+}
+.cm-s-inner .cm-string-2 {
+  color: #f07178 !important;
+}
+.cm-s-inner .cm-comment {
+  color: #676e95 !important;
+}
+.cm-s-inner .cm-variable {
+  color: #f07178 !important;
+}
+.cm-s-inner .cm-tag {
+  color: #ff5370 !important;
+}
+.cm-s-inner .cm-meta {
+  color: #ffcb6b !important;
+}
+.cm-s-inner .cm-attribute {
+  color: #c792ea !important;
+}
+.cm-s-inner .cm-property {
+  color: #c792ea !important;
+}
+.cm-s-inner .cm-qualifier {
+  color: #decb6b !important;
+}
+.cm-s-inner .cm-variable-3,
+.cm-s-inner .cm-type {
+  color: #decb6b !important;
+}
+.cm-s-inner .cm-error {
+  color: rgba(255, 255, 255, 1) !important;
+  background-color: #ff5370 !important;
+}
+.cm-s-inner .CodeMirror-matchingbracket {
+  text-decoration: underline;
+  color: white !important;
+}
+.CodeMirror div.CodeMirror-cursor {
+  border-left: 1px solid rgb(239, 112, 96);
+  z-index: 3;
+}
+
+.cm-s-inner div.CodeMirror-selected {
+  background: rgba(167, 178, 189, 0.2) !important;
+}
+
+.cm-s-inner.CodeMirror-focused div.CodeMirror-selected {
+  background: rgba(167, 178, 189, 0.2) !important;
+}
+
+.cm-s-inner .CodeMirror-selected,
+.cm-s-inner .CodeMirror-selectedtext {
+  background-color: rgba(167, 178, 189, 0.0) !important;
+}
+
+.cm-s-inner .CodeMirror-line::-moz-selection,
+.cm-s-inner .CodeMirror-line > span::-moz-selection,
+.cm-s-inner .CodeMirror-line > span > span::-moz-selection {
+  background-color: rgba(167, 178, 189, 0.2);
+}
+
+.cm-s-inner .CodeMirror-line::selection,
+.cm-s-inner .CodeMirror-line > span::selection,
+.cm-s-inner .CodeMirror-line > span > span::selection {
+  background-color: rgba(167, 178, 189, 0.2);
+}
+
+
+
+</style><title>软件工程小组设计----高校课堂教学评价系统</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><h1 ><img src="https://th.bing.com/th?id=OIP._4WMsvGHwK94HvcUDiOorwHaHI&w=200&h=200&c=9&rs=1&qlt=99&o=6&dpr=1.3&pid=13.1" alt="img" style="float: left; margin-right: 10px;" /></h1><h1 id='软件工程小组设计----高校课堂教学评价系统'><span>软件工程小组设计----高校课堂教学评价系统</span></h1><p><span>      </span><strong><span>School of Artificial Intelligence,Beijing Normal University</span></strong></p><p><span>                     202211998132 刘畅 产品经理与调研测试</span></p><p><span>                      202211081082 练正轩 市场调研与测试人员</span></p><p><span>                      202311081058 刘尚 开发人员与前端部署</span></p><p><span>                       202211081070 邓力滔 开发人员与后端算法</span></p><p><span>                       202211081020 张彤阳 开发人员与后端算法</span></p><p>&nbsp;</p><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n0"><a class="md-toc-inner" href="#"></a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n2"><a class="md-toc-inner" href="#软件工程小组设计----高校课堂教学评价系统">软件工程小组设计----高校课堂教学评价系统</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n11"><a class="md-toc-inner" href="#一项目总览">一、项目总览</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n12"><a class="md-toc-inner" href="#1-项目背景">1 项目背景</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n18"><a class="md-toc-inner" href="#2-项目目标">2 项目目标</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n20"><a class="md-toc-inner" href="#3-项目受众">3 项目受众</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n22"><a class="md-toc-inner" href="#4项目调研已有项目及方法分析）">4项目调研（已有项目及方法分析）</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n29"><a class="md-toc-inner" href="#5系统框架">5系统框架</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n35"><a class="md-toc-inner" href="#二按照⾯向对象设计原则和⽅法全⾯考虑软件设计⽅案">二、按照⾯向对象设计原则和⽅法全⾯考虑软件设计⽅案  </a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n36"><a class="md-toc-inner" href="#1）评价体系代码化架构">（1）评价体系代码化架构</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n39"><a class="md-toc-inner" href="#2）多模态课堂分析">（2）多模态课堂分析</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n40"><a class="md-toc-inner" href="#主要模块介绍-1">主要模块介绍</a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n41"><a class="md-toc-inner" href="#1-数据采集模块">1 数据采集模块</a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n55"><a class="md-toc-inner" href="#2-数据处理模块">2 数据处理模块</a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n69"><a class="md-toc-inner" href="#3-单模态分析模块">3 单模态分析模块</a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n87"><a class="md-toc-inner" href="#4-跨模态分析模块">4 跨模态分析模块</a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n103"><a class="md-toc-inner" href="#5-可视化与报告模块">5 可视化与报告模块</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n114"><a class="md-toc-inner" href="#关键技术与方法">关键技术与方法</a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n123"><a class="md-toc-inner" href="#a位移分析">(a)位移分析</a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n143"><a class="md-toc-inner" href="#b视线分析">(b)视线分析</a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n179"><a class="md-toc-inner" href="#c行为分析">(c)行为分析</a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n195"><a class="md-toc-inner" href="#d表情分析">(d)表情分析</a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n208"><a class="md-toc-inner" href="#e教学类型分析">(e)教学类型分析</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n270"><a class="md-toc-inner" href="#uml图2--多模态课堂分析uml图包含类图与框架图）">UML图2--多模态课堂分析UML图（包含类图与框架图）</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n275"><a class="md-toc-inner" href="#3）系统前端设计与实时评价反馈机制">（3）系统前端设计与实时评价反馈机制</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n276"><a class="md-toc-inner" href="#主要模块介绍-2">主要模块介绍</a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n277"><a class="md-toc-inner" href="#1-前端设计">1 前端设计</a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n280"><a class="md-toc-inner" href="#dashboardvue"><code>Dashboard.vue</code></a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n293"><a class="md-toc-inner" href="#reportdetailsvue"><code>ReportDetails.vue</code></a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n295"><a class="md-toc-inner" href="#reportviewervue"><code>ReportViewer.vue</code></a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n303"><a class="md-toc-inner" href="#userprofilevue"><code>UserProfile.vue</code></a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n311"><a class="md-toc-inner" href="#2数据流概述">2.数据流概述</a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n333"><a class="md-toc-inner" href="#3-分析流程">3. 分析流程</a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n334"><a class="md-toc-inner" href="#方案一-定时分析"><strong>方案一： 定时分析</strong></a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n349"><a class="md-toc-inner" href="#方案二自动菲尼分析任务队列模式">方案二：自动菲尼分析+任务队列模式</a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n357"><a class="md-toc-inner" href="#方案三按用户请求触发分析">方案三：按用户请求触发分析</a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n368"><a class="md-toc-inner" href="#4-报告生成">4. 报告生成</a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n381"><a class="md-toc-inner" href="#5-数据展示与用户访问">5. 数据展示与用户访问</a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n396"><a class="md-toc-inner" href="#数据流示意">数据流示意</a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n398"><a class="md-toc-inner" href="#6模块交互和接口说明">6.模块交互和接口说明</a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n428"><a class="md-toc-inner" href="#系统优势与改进方向">系统优势与改进方向</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n443"><a class="md-toc-inner" href="#uml图3---系统前端设计与实时评价反馈机制包含类图与框架图）">UML图3-- 系统前端设计与实时评价反馈机制（包含类图与框架图）</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n449"><a class="md-toc-inner" href="#4）设计过程利用原则--solid原则及应用实例">（4）设计过程利用原则--solid原则及应用实例</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n462"><a class="md-toc-inner" href="#5）设计过程利用模型--迭代增量模型">（5）设计过程利用模型--迭代增量模型</a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n463"><a class="md-toc-inner" href="#1模型概述"><strong>【1】模型概述：</strong></a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n465"><a class="md-toc-inner" href="#2适用性分析"><strong>【2】适用性分析</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n479"><a class="md-toc-inner" href="#三重构复⽤的思考及最终⽅案">三、重构、复⽤的思考及最终⽅案  </a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n480"><a class="md-toc-inner" href="#thinking">thinking</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n482"><a class="md-toc-inner" href="#methods">methods</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n520"><a class="md-toc-inner" href="#四uml图重现">四、UML图重现</a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n521"><a class="md-toc-inner" href="#多模态课堂分析uml">多模态课堂分析uml</a></span><span role="listitem" class="md-toc-item md-toc-h6" data-ref="n524"><a class="md-toc-inner" href="#系统前端设计与实时评价反馈机制uml">系统前端设计与实时评价反馈机制uml</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n527"><a class="md-toc-inner" href="#五可能出现的代码质量问题及相关解决⽅案">五、可能出现的代码质量问题及相关解决⽅案  </a></span></p></div><h3 id='一项目总览'><span>一、项目总览</span></h3><h5 id='1-项目背景'><span>1 项目背景</span></h5><p><span>教育数字化是主动适应新一轮科技革命和产业变革的必然选择，是促进更高质量教育公平的必然要求，是教育普及化阶段的必然趋势，是推动教育创新发展的必由之路。党的二十大报告首次提出“推进教育数字化，建设全民终身学习的学习型社会、学习型大国”。习近平总书记在中共中央政治局第五次集体学习时强调 “教育数字化是我国开辟教育发展新赛道和塑造教育发展新优势的重要突破口”。教育部部长指出“实施人工智能赋能行动，促进智能技术与教育教学、科学研究深度融合”。因此，教育数字化建设已受到高度重视。</span></p><p><span>高校课堂教学评价作为提高教学质量、促进教育改革和创新的重要手段之一，具有重要的理论与实践意义。教学评价不仅是对教师教学工作的客观评价，更是对教学内容、方法以及学生学习情况的全面检视。通过评价和反馈，教师能够了解自己教学中的优势和不足，从而有针对性地改进教学内容和方法，推动教学质量的持续提升。高校课堂教学评价也为建立良好的教学管理体系提供了重要支持，为教学管理部门提供了全面了解教学工作情况的途径，有助于及时发现和解决教学中存在的问题，提升整体教学水平。</span></p><p><span>然而，传统的教学评价方法存在诸多局限性，如人工评价模式耗费时间精力、评价过程主观性强等。随着人工智能和大数据等前沿技术的快速发展，数字化的教学评价模式逐渐受到重视。数字化评价通过计算机技术支持和评价功能融合匹配的方式，具有动态监测、实时反馈等特点，能够消除传统评价模式的片面性和低效率问题，实现教学增值性评价。同时，可视化的系统可以更好的掌控教师的课堂表现与更客观的教学评价，不仅节约人力，还可以贴近校园生活与广大学生群体的直接利益，在这一背景下，借助人工智能和数据处理技术，改进课堂教学评价方法，强化教学过程评价、探索增值评价，借助计算机开发经验，提供更为快捷更为高效的反馈机制、构建技术支撑下的教育评价新模式成为新一轮教学改革的关键。</span></p><p><span>因此，为了解决传统评价方法存在的问题，本项目旨在利用计算机视觉与自然语言处理技术，如人脸检测、视线检测、行为识别、表情识别、语音识别、文本匹配等人工智能技术方法，并开发一个完整的可视化系统完整的对教师教学过程中的教学行为和教学内容等进行实时感知和统计评估，对教师教学特点进行深入掌握和分析，为教学质量的改善和提升提供科学依据和支持。</span></p><p><span>同时，该项目配置了线上意见反馈、评分质疑等机制，帮助评价体系及时调整，更好的重建数字化教学方式。</span></p><h5 id='2-项目目标'><span>2 项目目标</span></h5><p><span>本项目的研究目标是深入探索和构建一个适应教育数字化时代的、基于数据驱动的高校课堂教学评价系统。打破传统单一维度、以分数为主的评价机制，强化对课堂图像、音视频、文本等多模态、全方位、长时段数据的感知、采集、分析和监测，基于以人为中心的多模态感知与分析技术，使得课堂中的过程性数据转换为课堂行为等可解读性评价依据。同时，以教学目标达成为导向，实现教师个体行为、认知与情感等多维度测评，并结合合理搞高效的可视化系统及时发现课堂教学中可能出现的问题，帮助教师改进授课质量。</span></p><h5 id='3-项目受众'><span>3 项目受众</span></h5><p><span>本项目适用于高校评价单位，高校教学质量分析单位、机关，广大教师群体与学生群体，及时反馈、教学分析标准全公开透明，可以帮助教师群体及时发现教学问题改正，同时可以对高校教师的教学质量加以监督，以更客观的指标和系统反馈帮助教学向好向善。同时设置的系统反馈功能，可以帮助学生、教师对系统提供意见出口，及时调整系统评价和重建评价体系，对教学过程中的参与对象老师与学生都大有裨益。</span></p><h5 id='4项目调研已有项目及方法分析）'><span>4项目调研（已有项目及方法分析）</span></h5><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h5 id='5系统框架'><span>5系统框架</span></h5><p><span>本项目主要包括评价指标体系调研与构建（代码化）、多模态课堂教学智能分析和高校课堂教学评价与前端反馈三个部分。</span></p><p><span>主要系统框架如下：</span></p><p><strong><span>评价指标体系构建（代码化）。</span></strong><span>制定代码层适用于AI教学评测的课堂多维度评价体系指标，例如教学风格、知识点偏移度、课件依赖性等，智能化生成课堂教学过程评测报告，包括视线分布图、行为分布图、表情分布图、位移热力图和知识点分布图等多种评测结果展示，实现课堂教学测评量化指标的可视化呈现。</span></p><p><strong><span>多模态课堂教学智能分析。</span></strong><span>旨在利用人工智能技术，如人脸检测、动作识别、表情识别、自然语言处理等，对收集到的视频、音频、文本等多模态数据进行深度分析。在单模态数据分析中，对教学视频数据进行处理，主要包括利用人脸检测与关键点检测技术实现对教师位置的实时感知；利用视线检测技术对教师的视线关注区域进行识别；利用表情识别和动作识别对教师的情绪和动作进行检测。在跨模态数据分析中，对课堂语音、课件、教学大纲等语音和文本多模态数据进行处理，主要包括利用语音识别和文本匹配技术，检测教师的课堂教学内容是否存在敏感词汇与危险言论，实现课堂教学意识形态分析；利用语音识别和光学字符识别（Optical Character Recognition, OCR）检测教师是否存在照着课件读的现象，评估课件依赖程度；利用语音识别和语义理解等技术，实时分析教师的教学内容，并与教学大纲进行匹配，检测知识点偏移程度。</span></p><p><strong><span>高校课堂教学评价与前端反馈。</span></strong><span>本项目计划构建Web端展示平台，对多模态课堂教学分析结果进行可视化展示，实现教学过程智能感知与画像。同时，对比分析智能评价机制反馈前后的教学质量，进而对该智能评价机制持续改进和优化。同时，可以同时处理多地实时视频数据，用最快实时反馈到用户端。</span></p><h4 id='二按照⾯向对象设计原则和⽅法全⾯考虑软件设计⽅案'><span>二、按照⾯向对象设计原则和⽅法全⾯考虑软件设计⽅案  </span></h4><h5 id='1）评价体系代码化架构'><span>（1）评价体系代码化架构</span></h5><p>&nbsp;</p><p>&nbsp;</p><h5 id='2）多模态课堂分析'><span>（2）多模态课堂分析</span></h5><h5 id='主要模块介绍-1'><span>主要模块介绍</span></h5><h6 id='1-数据采集模块'><span>1 数据采集模块</span></h6><ul><li><p><strong><span>职责</span></strong><span>：负责从视频、音频等多模态数据源中采集数据。</span></p></li><li><p><strong><span>类设计</span></strong><span>：</span></p><ul><li><code>DataCollector</code><span>：抽象基类，定义采集数据的接口。</span></li><li><code>VideoDataCollector</code><span>：继承自</span><code>DataCollector</code><span>，实现视频数据采集。</span></li><li><code>AudioDataCollector</code><span>：继承自</span><code>DataCollector</code><span>，实现音频数据采集。</span></li></ul></li></ul><h6 id='2-数据处理模块'><span>2 数据处理模块</span></h6><ul><li><p><strong><span>职责</span></strong><span>：对采集的数据进行预处理和特征提取，为后续模块的推理分析打下基础。</span></p></li><li><p><strong><span>类设计</span></strong><span>：</span></p><ul><li><code>DataProcessor</code><span>：抽象基类，定义数据处理接口。</span></li><li><code>VideoDataProcessor</code><span>：继承自</span><code>DataProcessor</code><span>，实现视频数据的处理。</span></li><li><code>AudioDataProcessor</code><span>：继承自</span><code>DataProcessor</code><span>，实现音频数据的处理。</span></li></ul></li></ul><h6 id='3-单模态分析模块'><span>3 单模态分析模块</span></h6><ul><li><p><strong><span>职责</span></strong><span>：对单模态数据进行分析，包括位移、视线、行为、表情分析。</span></p></li><li><p><strong><span>类设计</span></strong><span>：</span></p><ul><li><code>ModalityAnalyzer</code><span>：抽象基类，定义单模态分析接口，定义各个单模态分析模块的公用基础属性和功能。</span></li><li><code>DisplacementAnalyzer</code><span>：继承自</span><code>ModalityAnalyzer</code><span>，实现位移分析，利用人脸检测与关键点检测技术实现对教师位置的实时感知。</span></li><li><code>VisionAnalyzer</code><span>：继承自</span><code>ModalityAnalyzer</code><span>，实现视线分析，利用视线检测技术对教师的视线关注区域进行识别。</span></li><li><code>BehaviorAnalyzer</code><span>：继承自</span><code>ModalityAnalyzer</code><span>，实现行为分析。</span></li><li><code>ExpressionAnalyzer</code><span>：继承自</span><code>ModalityAnalyzer</code><span>，实现表情分析。</span></li></ul></li></ul><h6 id='4-跨模态分析模块'><span>4 跨模态分析模块</span></h6><ul><li><p><strong><span>职责</span></strong><span>：对多模态数据进行综合分析，包括意识形态、知识点偏移、课件依赖性分析。</span></p></li><li><p><strong><span>类设计</span></strong><span>：</span></p><ul><li><code>CrossModalityAnalyzer</code><span>：抽象基类，定义跨模态分析接口。</span></li><li><code>IdeologyAnalyzer</code><span>：继承自</span><code>CrossModalityAnalyzer</code><span>，实现意识形态分析。</span></li><li><code>KnowledgeDeviationAnalyzer</code><span>：继承自</span><code>CrossModalityAnalyzer</code><span>，实现知识点偏移分析。</span></li><li><code>CoursewareDependenceAnalyzer</code><span>：继承自</span><code>CrossModalityAnalyzer</code><span>，实现课件依赖性分析。</span></li></ul></li></ul><h6 id='5-可视化与报告模块'><span>5 可视化与报告模块</span></h6><ul><li><p><strong><span>职责</span></strong><span>：将分析结果进行可视化展示，并生成教学质量评估报告。</span></p></li><li><p><strong><span>类设计</span></strong><span>：</span></p><ul><li><code>Visualization</code><span>：负责将分析结果转化为图表。</span></li><li><code>ReportGenerator</code><span>：负责生成教学质量评估报告。</span></li></ul></li></ul><h5 id='关键技术与方法'><span>关键技术与方法</span></h5><ul><li><strong><span>人工智能算法</span></strong><span>：如人脸检测、动作识别、表情识别、自然语言处理等。</span></li><li><strong><span>数据可视化技术</span></strong><span>：如图表、热力图、分布图等。</span></li><li><strong><span>Web开发技术</span></strong><span>：构建Web端展示平台，如React或Vue.js。</span></li></ul><p><span>方法介绍举例：</span></p><h6 id='a位移分析'><span>(a)位移分析</span></h6><p><span>在教学评价中，位置移动（位移）指教师在课堂上站立位置的变化。已有文献中提出，教师授课过程中应适当走到学生当中，在心理上接近学生；学生在考试或专心做练习时不希望有教师在他们身边走动或停留，如果这样可能会分散他们的注意力，甚至造成情绪紧张；教师不应走到教室偏后侧进行讲解和演示，否则会使前面的学生看不到教师的演示。因此，教师的位移对于课堂授课质量有一定的影响。本项目通过人脸检测技术对教师的位置进行实时定位，并利用热力图绘制教师在教室中的位移范围，从而便于对教师的位移进行挖掘与分析。</span></p><p><span>（1）技术路线</span></p><p><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image002.gif" referrerpolicy="no-referrer" alt="img"></p><p><span>图 1教室鸟瞰图 2人脸检测框和关键点</span></p><p><strong><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image004.jpg" referrerpolicy="no-referrer" alt="descript"></strong></p><p><span>图 3 RetinaFace模型架构</span></p><p><span>为了更好地记录教师的教学过程，通常在面向讲台，教室的中后方或者后方部署摄像头，对教师数据进行实时采集，如图1所示。而教师的位移主要包含左、右、前、后四个方向。前后表示教师走进或远离摄像头，左右则表示教师相对于摄像头左右移动。为感知教师的实时位置，本项目首先通过RetinaFace进行人脸检测与关键点检测。RetinaFace以ResNet为主干网络，并采用特征金字塔结构，将人脸框预测、二维人脸关键点定位、三维顶点回归作为多任务损失对网络进行训练。将课堂教学的图像帧输入RetinaFace模型，即可得到教师的人脸框和五个人脸关键点（眼睛、鼻尖和嘴角），如图2所示。</span></p><p><span>通过人脸框可以定位到教师的实时位置，本项目利用鼻尖点的左右移动来粗略估计教师的左右位移，从而得到教师在图像中的移动距离（以像素为单位）。然而，在现实应用中，还需要将该值映射为真实世界的移动距离（以米为单位）。同时，相比于真实世界，图像是二维的，缺少深度信息，因此，无法直接从图像中获得教师的前后移动距离。针对以上问题，需要将像素坐标系转换为世界坐标系从而获得深度信息，并实现映射。这个过程需要相机内外参数（通过相机标定获得）参与计算。然而，考虑到教室的布局和摄像头摆放位置有可能存在差异，需要针对每间教室的具体情况分别进行标定。这种做法费时费力且不存在普适性。因此，本项目对其进行简化和优化，利用“近大远小”的成像特点，采用更为简洁的计算方法。</span></p><p><span>前后距离的计算公式如下：</span></p><p><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image006.gif" referrerpolicy="no-referrer" alt="img"></p><p><span>其中，</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image008.gif" referrerpolicy="no-referrer" alt="img"><span>代表深度值，即教师与相机之间的真实世界距离（以米为单位）。</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image010.gif" referrerpolicy="no-referrer" alt="img"><span>为常量，表示人脸的真实世界高度（在最终结果以米为单位的计算中个体差异可以忽略）。</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image012.gif" referrerpolicy="no-referrer" alt="img"><span>是人脸在图像中的高度，该值可直接通过人脸检测框的高度计算得到。</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image014.gif" referrerpolicy="no-referrer" alt="img"><span>是一个固定常数，用于调整模型以匹配真实情况。该公式基于“近大远小”的原则，将深度值与人脸在图像中的高度建模成反比关系，即离相机越近，人脸检测框越大，反之亦然。</span></p><p><span>左右距离的计算公式如下：</span></p><p><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image016.gif" referrerpolicy="no-referrer" alt="img"></p><p><span>其中，</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image018.gif" referrerpolicy="no-referrer" alt="img"><span>代表教师在真实世界的左右位移（以米为单位）。</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image020.gif" referrerpolicy="no-referrer" alt="img"><span>表示在图像中以左上角为坐标原点时，教师鼻尖的横坐标。</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image022.gif" referrerpolicy="no-referrer" alt="img"><span>为图像的宽度（以像素为单位）。</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image024.gif" referrerpolicy="no-referrer" alt="img"><span>则将坐标原点平移至图像中心，即得到教师在图像中相对于画面中心的距离。该公式直接简化地将真实世界左右距离与图像中的左右距离建模成正比关系，通过计算教师鼻尖的横坐标与图像中心横坐标的差值，并乘以每像素实际距离</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image026.gif" referrerpolicy="no-referrer" alt="img"><span>，得到教师在真实世界中的水平距离</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image018.gif" referrerpolicy="no-referrer" alt="img"><span>。</span></p><p><span>通过结合深度计算和水平距离计算，本项目能够实现对目标物体在三维空间中的精确定位，为后续的分析和处理提供了有力的支持。</span></p><p><span>（2）模块流程</span></p><p><span>如图4所示，此模块的实现过程为首先调用RetinaFace模型获取当前图像帧中教师的人脸框和5个关键点。然后，根据鼻尖点的左右移动获取教师的左右位置，并根据“近大远小”的原则获取教师的前后位置，并对结果进行输出。当教学视频的所有图像帧处理完毕之后，调用核密度估计算法计算位移热力图并输出。</span></p><p><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image028.gif" referrerpolicy="no-referrer" alt="descript"></p><p><span>图 4位移估计流程图</span></p><h6 id='b视线分析'><span>(b)视线分析</span></h6><p><span>在教学过程中，教师与学生之间的交流通常通过眼神实现。在课堂中，教师一味低头看课本或者课件，缺乏与学生的眼神交流会导致课程体验不佳。因此，合适的眼神运用方法是教师智慧的体现，对于提高教学效率和管理水平至关重要。本项目通过视线检测算法对教师的视线进行实时估计，并对视线分布进行可视化，以深入挖掘和分析教师的视线规律和特点。</span></p><p><span>（1）技术路线</span></p><p><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image076.gif" referrerpolicy="no-referrer" alt="descript"></p><p><span>图 5 3DGazeNet模型架构</span></p><p><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image078.gif" referrerpolicy="no-referrer" alt="descript"></p><p><span>图 6 视线的偏航角和俯仰角</span></p><p><span>采用3DGazeNet进行视线检测。3DGazeNet提出利用三维眼球网格估计来辅助视线检测，以ResNet18为主干网络，并紧接两层全连接层以同时输出三维人眼网格和三维视线向量，如图5所示。将课堂教学的图像帧输入3DGazeNet模型，即可得到教师的三维视线向量</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image080.gif" referrerpolicy="no-referrer" alt="img"><span>，其中</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image082.gif" referrerpolicy="no-referrer" alt="img"><span>分别表示三维空间中</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image084.gif" referrerpolicy="no-referrer" alt="img"><span>轴的分量。基于三维视线向量，由以下公式可以计算出视线的偏航角和俯仰角（如图6所示)：</span></p><p><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image086.gif" referrerpolicy="no-referrer" alt="img"></p><p><span>其中，</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image088.gif" referrerpolicy="no-referrer" alt="img"><span>为偏航角，记录视线的左右偏移；</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image090.gif" referrerpolicy="no-referrer" alt="img"><span>为俯仰角，记录视线的上下偏移。本项目通过视线的偏航角和俯仰角将视线的关注区域分为四类：左偏上、左偏下、右偏上、右偏下（如下表所示），以更好地统计和挖掘教师课堂的视线分布规律和特点。</span></p><p><span>表  视线角度与关注区域的关系</span></p><figure><table><thead><tr><th><span>序号</span></th><th><span>视线关注区</span></th><th><span>角度值</span></th></tr></thead><tbody><tr><td><span>1</span></td><td><span>左偏上</span></td><td><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image092.gif" referrerpolicy="no-referrer" alt="img"></td></tr><tr><td><span>2</span></td><td><span>左偏下</span></td><td><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image094.gif" referrerpolicy="no-referrer" alt="img"></td></tr><tr><td><span>3</span></td><td><span>右偏上</span></td><td><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image096.gif" referrerpolicy="no-referrer" alt="img"></td></tr><tr><td><span>4</span></td><td><span>右偏下</span></td><td><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image098.gif" referrerpolicy="no-referrer" alt="img"></td></tr></tbody></table></figure><p><span>（2）模块流程</span></p><p><span>  此模块执行过程如图7所示，首先调用3DGazeNet模型对当前图像帧中的教师视线进行检测，获取三维视线向量，并计算视线的偏航角和俯仰角。其中，偏航角为正表示视线关注右方区域，为负表示视线关注左方区域；俯仰角为正则表示视线关注偏下方区域，反之表示视线关注偏上方区域。当教学视频的所有图像帧处理完毕之后，输出视线关注分布图。</span></p><p><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image100.gif" referrerpolicy="no-referrer" alt="descript"></p><p><span>图 7视线估计流程图</span></p><h6 id='c行为分析'><span>(c)行为分析</span></h6><p><span>教师的动作行为对课堂有着深远的影响，它可以直接影响学生的学习效果、课堂氛围和教学质量。例如，教师的引导指示类动作可以帮助学生集中注意力，促进课堂互动，提高学习效率；教师若一直低头看课本，则会减少课堂互动程度，降低学生学习兴趣。此外，动作在一定程度上也能反映出教师的教学类型和教态风格。例如，喜欢面向学生挥舞手臂的教师较大概率属于互动型教学方式。</span></p><p><span>因此，为了研究教师在教学过程中的行为分布和行为变化，本项目选取了五种常见的课堂行为，并对这些行为进行实时识别，从而评估教师的风格和特点。这五种课堂行为分别是：面向学生挥舞手臂、手指指向某处、使用课本、书写板书和在教室走动。其中，面向学生挥舞手臂和在教室走动可以看作是教师与学生的一种互动方式；手指指向某处表示教师在引导学生的注意力，提高和管理课堂效率；书写板书表示教师利用合理的教学工具进行知识传授；使用课本则反映教师在一定程度上对于课程内容不太熟悉。因此，这五种行为均对教师的评估具有一定价值和意义。</span></p><p><span>（1）算法原理介绍</span></p><p><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image115.gif" referrerpolicy="no-referrer" alt="descript"></p><p><span>图 8教师行为识别模型框架</span></p><p><span>本项目采用基于骨架点的动作识别对教师的五类动作进行识别。首先使用YOLOv5和StrongSort算法对教学视频中的教师进行目标检测和跟踪，从而定位教师的实时位置。然后，使用HRNet对教师进行骨架点检测。HRNet采用并行多分支网络结构，通过在不同阶段内部实现多尺度特征的反复交融，保持高分辨率表征使最后输出特征更丰富。它包含四个阶段，每个阶段有四个并行的子网络，其分辨率逐渐降低到一半，同时宽度（通道数）增加到两倍。第一个阶段包含4个残差单元并紧随一个</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image117.gif" referrerpolicy="no-referrer" alt="img"><span>卷积。第二、三、四阶段分别包含1、4、3个交换块（exchange unit）。每个交换块包含4个残差单元，每个单元包含两个</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image117.gif" referrerpolicy="no-referrer" alt="img"><span>卷积以及一个跨分辨率的交换单元。将由YOLOv5和StrongSort检测跟踪到的教师图像输入HRNet模型，即可得到教师的</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image120.gif" referrerpolicy="no-referrer" alt="img"><span>个骨骼关键点。</span></p><p><span>得到骨架点后，采用ST-GCN结合时间和空间信息实现基于骨架点的动作识别。ST-GCN利用时空图对骨架点序列进行分层表示。具体而言，在具有每帧</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image122.gif" referrerpolicy="no-referrer" alt="img"><span>个骨架点的</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image124.gif" referrerpolicy="no-referrer" alt="img"><span>个图像帧上构造无向时空图</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image126.gif" referrerpolicy="no-referrer" alt="img"><span>。其中，节点</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image128.gif" referrerpolicy="no-referrer" alt="img"><span>是骨架序列中所有的骨架点。边包含骨骼间连接和帧间连接两个子集。骨骼间连接</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image130.gif" referrerpolicy="no-referrer" alt="img"><span>表示每帧图像中不同骨架点构成的边，</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image132.gif" referrerpolicy="no-referrer" alt="img"><span>为自然连接的人体关节集合。帧间连接</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image134.gif" referrerpolicy="no-referrer" alt="img"><span>表示连续帧中的相同骨架点构成的边。将构造的时空图输入由9层时空图卷积算子构成的ST-GCN，对时间维度和空间维度的数据分别进行卷积操作，最终得到所属的动作类别。</span></p><p><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image136.gif" referrerpolicy="no-referrer" alt="img"></p><p><span>图 9 YOLOv5和StrongSort模型结构示意图</span></p><p><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image138.gif" referrerpolicy="no-referrer" alt="img"></p><p><span>图 10 HRNet模型结构示意图</span></p><p><span>（2）模块工作流程</span></p><p><span>如图11所示，此模块首先调用YOLOv5和StrongSort模型对当前图像帧中的教师进行检测和跟踪。然后，利用HRNet模型提取教师的17个骨架点，最后，基于骨架点构造时空图，以时空图为输入，利用ST-GCN模型对教师动作进行识别。当教学视频的所有图像帧处理完毕之后，输出动作分布图。</span></p><p><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image140.gif" referrerpolicy="no-referrer" alt="descript"></p><p><span>图 11动作识别流程图</span></p><h6 id='d表情分析'><span>(d)表情分析</span></h6><p><span>教师的表情往往伴随着教学的进行而发生变化。当教师专注于教学时，可能会面带微笑，眉毛微微皱起，注视着学生或教材。相反，当教师不够专注时，可能会表现出漫不经心的表情，眼神游离或神情呆滞。此外，教师的表情也可以影响课程效果。友好和温暖的表情可能会增进师生之间的信任和亲近感，促进积极的学习氛围；相反，严肃或冷漠的表情可能会导致师生之间的疏离和隔阂，影响学生的学习体验和情绪状态。因此，教师的表情对授课质量也有一定影响，对教师表情的实时感知与分析也至关重要。</span></p><p><span>（1）算法原理介绍</span></p><p><span>  将教师的表情分为中性、开心、惊讶、愤怒、厌恶、悲伤、恐惧七种，并采用ResMaskingNet对其进行实时感知与识别。该网络包含四个主要的残差掩码块(Residual Masking Blocks)。每个残差掩码块包含一个残差层</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image192.gif" referrerpolicy="no-referrer" alt="img"><span>和一个掩码块</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image194.gif" referrerpolicy="no-referrer" alt="img"><span>。残差层对输入特征图进行非线性转换输出特征图</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image196.gif" referrerpolicy="no-referrer" alt="img"><span>，而掩码块则为特征图中的每个元素学习合适的权重以使得网络更加关注相关信息进行决策和分类：</span></p><p><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image198.gif" referrerpolicy="no-referrer" alt="img"></p><p><span>其中，</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image200.gif" referrerpolicy="no-referrer" alt="img"><span>为残差掩码块的输入特征图，</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image202.gif" referrerpolicy="no-referrer" alt="img"><span>为残差掩码块的输出特征图，</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image204.gif" referrerpolicy="no-referrer" alt="img"><span>表示逐元素相乘。将教师课堂的图像帧调整大小为224×224，并将其通过一个步幅为2的3×3卷积层和一个2×2的最大池化层，使其空间大小减小到56×56。接下来，利用四个残差掩码块对池化后的特征图进行非线性变换，分别生成56×56、28×28、14×14、7×7四种空间大小的特征图。最后，输出的特征图通过一个平均池化层和一个全连接层，输出最终的表情类别。</span></p><p><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image206.gif" referrerpolicy="no-referrer" alt="descript"></p><p><span>图 12表情分析模型架构</span></p><p><span>（2）模块工作流程</span></p><p><span>如图13所示，此模块调用ResMaskingNet模型对当前图像帧中教师的表情进行识别。当教学视频的所有图像帧处理完毕之后，输出表情识别统计结果用以后续分析。</span></p><p><span> </span></p><p><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image208.gif" referrerpolicy="no-referrer" alt="img"></p><p><span>图 13表情识别流程图</span></p><h6 id='e教学类型分析'><span>(e)教学类型分析</span></h6><p><span>本项目设计了教学类型评估模块，用于整合多种特征，并输出教师教学风格类型的概括性评价，以便教师在课后迅速了解教学的总体综合评估结果。该模块通过对五类行为的识别结果进行建模评估，利用教师不同课堂行为的分布情况来判断教师的教学风格。举手示意和指示引导通常用于互动型教学，强调师生间的交流与反馈。走动行为表明教师在课堂中较为活跃，可能倾向于激昂型教学，通过动态的授课方式激发学生兴趣。使用课本和书写板书则更多出现在灌输型和庄严型教学中，注重系统性知识的传递和严谨的授课方式。</span></p><p><span>算法原理介绍</span></p><p><span>该模块的核心是使用熵权法对各项特征进行权重分配。熵权法通过计算各个特征在数据集中的信息熵，衡量其信息含量和重要性，并据此为每个特征分配适当的权重。这种方法能够更好地平衡不同特征的重要性，使得较为关键的特征在评估过程中得到更高的权重，确保评估结果的准确性和公平性。</span></p><p><span>熵（Entropy）最初是统计热力学领域的概念，通常与无序、随机或不确定状态相关联：一个系统内部混乱程度越高，系统的熵值也就越高。后来，美国著名数学家香农（Shannon）将熵的概念引入信息论（Information Theory）中，提出信息熵（Information Entropy），信息论中的熵直接类似于统计热力学中的熵，用于描述事件的信息量或不确定度。对于随机变量</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image216.gif" referrerpolicy="no-referrer" alt="img"><span>，信息熵被定义为：</span></p><p><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image218.gif" referrerpolicy="no-referrer" alt="img"></p><p><span>其中，</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image220.gif" referrerpolicy="no-referrer" alt="img"><span>为</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image216.gif" referrerpolicy="no-referrer" alt="img"><span>的概率密度函数，</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image222.gif" referrerpolicy="no-referrer" alt="img"><span>为期望函数。</span></p><p><span>  本项目将教师的五类教学行为特征视为五个独立的事件。在明确特征属性之后，使用极差标准化方法对数据进行处理。具体而言，对于每种分类结果，根据教育学的先验知识，为每类特征与该类别之间的相关性进行指定。正相关特征进行正向影响特征的标准化处理，负相关特征则进行负向影响特征的标准化处理。令</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image224.gif" referrerpolicy="no-referrer" alt="img"><span>表示样本数，</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image226.gif" referrerpolicy="no-referrer" alt="img"><span>表示原始数据矩阵，其尺寸为</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image228.gif" referrerpolicy="no-referrer" alt="img"><span>，对于第</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image230.gif" referrerpolicy="no-referrer" alt="img"><span>个特征正向标准化处理：</span></p><p><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image232.gif" referrerpolicy="no-referrer" alt="img"></p><p><span>负向标准化处理：</span></p><p><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image234.gif" referrerpolicy="no-referrer" alt="img"></p><p><span>得到标准化数据矩阵</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image236.gif" referrerpolicy="no-referrer" alt="img"><span>。本项目用事件数值比重表征其概率。对于第</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image230.gif" referrerpolicy="no-referrer" alt="img"><span>个特征，数值比重计算公式为：</span></p><p><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image239.gif" referrerpolicy="no-referrer" alt="img"></p><p><span>计算第</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image240.gif" referrerpolicy="no-referrer" alt="img"><span>个特征的熵值：</span></p><p><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image242.gif" referrerpolicy="no-referrer" alt="img"></p><p><span>确定第</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image240.gif" referrerpolicy="no-referrer" alt="img"><span>个特征的熵权：</span></p><p><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image244.gif" referrerpolicy="no-referrer" alt="img"></p><p><span>  本项目设计了“互动型”和“灌输型”、“激昂型”和“庄严型”两组分类，各个分类与五类教学行为的相关性如下表所示。</span></p><p><span>表 各个分类与五类教学行为的相关性</span></p><figure><table><thead><tr><th>&nbsp;</th><th><span>举手示意</span></th><th><span>走动</span></th><th><span>指示引导</span></th><th><span>使用课本</span></th><th><span>书写板书</span></th></tr></thead><tbody><tr><td><span>互动型</span></td><td><span>正相关</span></td><td><span>正相关</span></td><td><span>正相关</span></td><td><span>负相关</span></td><td><span>负相关</span></td></tr><tr><td><span>灌输型</span></td><td><span>负相关</span></td><td><span>负相关</span></td><td><span>负相关</span></td><td><span>正相关</span></td><td><span>正相关</span></td></tr><tr><td><span>激昂型</span></td><td><span>正相关</span></td><td><span>正相关</span></td><td><span>负相关</span></td><td><span>负相关</span></td><td><span>负相关</span></td></tr><tr><td><span>庄严型</span></td><td><span>负相关</span></td><td><span>负相关</span></td><td><span>正相关</span></td><td><span>正相关</span></td><td><span>正相关</span></td></tr></tbody></table></figure><p><span>每一个分类可以得出一组熵权向量</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image246.gif" referrerpolicy="no-referrer" alt="img"><span>，构成一个尺寸为</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image248.gif" referrerpolicy="no-referrer" alt="img"><span>的权重矩阵</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image250.gif" referrerpolicy="no-referrer" alt="img"><span>，推理分类评分值的公式即可表达为</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image252.gif" referrerpolicy="no-referrer" alt="img"><span>，评分矩阵</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image254.gif" referrerpolicy="no-referrer" alt="img"><span>尺寸为</span><img src="file:///C:/Users/m1856/AppData/Local/Temp/msohtmlclip1/01/clip_image256.gif" referrerpolicy="no-referrer" alt="img"><span>，其含义为全体样本在四个类别上的评分。因为本项目设计了两组相对的分类标签，所以可以粗略地认为：“互动型”评分高于“灌输型”时，教师在该教学片段内的教学风格整体偏向于互动型，反之则偏向于灌输型；“激昂型”评分高于“庄严型”时，教师在该教学片段内的教学风格整体偏向于激昂型，反之则偏向于庄严型。</span></p><p><strong><span>此部分测试与维护需知：</span></strong></p><ul><li><strong><span>测试</span></strong><span>：对每个模块进行单元测试，对整个系统进行集成测试。</span></li><li><strong><span>维护</span></strong><span>：定期更新算法模型，优化系统性能，修复发现的问题。</span></li></ul><h5 id='uml图2--多模态课堂分析uml图包含类图与框架图）'><span>UML图2--多模态课堂分析UML图（包含类图与框架图）</span></h5><p><strong><span>类图：</span></strong></p><p><img src="C:/Users/m1856/Desktop/mywork/mywork/Untitled diagram-2024-11-01-025123.png" referrerpolicy="no-referrer" alt="Untitled diagram-2024-11-01-025123"></p><p><strong><span>系统框架图：</span></strong></p><p><img src="C:\Users\m1856\Desktop\mywork\mywork\Untitled diagram-2024-11-01-024815.png" referrerpolicy="no-referrer" alt="Untitled diagram-2024-11-01-024815"></p><h5 id='3）系统前端设计与实时评价反馈机制'><span>（3）系统前端设计与实时评价反馈机制</span></h5><h5 id='主要模块介绍-2'><span>主要模块介绍</span></h5><h6 id='1-前端设计'><span>1 前端设计</span></h6><p><span>使用Vue组件的方式来设计前端</span></p><p><span>主要Vue组件</span>
+<code>Dashboard.vue</code><span>：系统的概览界面，展示教学质量的总体情况。</span>
+<code>RealTimeFeedback.vue</code><span>：用于实时显示课堂反馈数据，如情绪状态和注意力分布。</span>
+<code>ReportViewer.vue</code><span>：用于查看和下载历史报告。</span>
+<code>UserProfile.vue</code><span>：用户资料和偏好设置页面。</span>
+<code>Auth.vue</code><span>：处理用户登录和权限验证的组件。</span></p><h6 id='dashboardvue'><code>Dashboard.vue</code></h6><ul><li><p><span>描述：展示教学质量的总体情况，包括关键统计数据的图表和摘要。</span></p></li><li><p><span>数据来源：通过API从后端获取关键数据。</span></p></li><li><p><span>功能：</span></p><ul><li><code>showSummary()</code><span>：展示概览信息。</span></li><li><code>refreshDashboard()</code><span>：刷新数据，定期更新</span></li></ul></li></ul><h6 id='reportdetailsvue'><code>ReportDetails.vue</code></h6><p><span>功能：展示单堂课程的详细分析数据，用户可以选择某个课程查看其分析结果。</span>
+<span>数据来源：通过API请求特定课程的详细分析数据。</span>
+<span>功能点：</span>
+<code>fetchReportDetails(courseId)</code><span>：根据课程ID获取详细数据。</span>
+<code>renderReportCharts()</code><span>：根据详细数据生成相应的图表展示。</span></p><h6 id='reportviewervue'><code>ReportViewer.vue</code></h6><ul><li><span>功能：展示历史报告的列表，支持用户下载查看。</span></li><li><span>数据来源：通过API获取所有历史报告信息。</span></li><li><span>功能点：</span>
+<span>-</span><code>fetchReportList()</code><span>：获取历史报告的列表。</span>
+<span>-</span><code>downloadReport(reportId)</code><span>：下载选定报告文件。</span></li></ul><h6 id='userprofilevue'><code>UserProfile.vue</code></h6><ul><li><span>功能：用户管理页面，供用户更新个人资料，查看权限。</span></li><li><span>数据来源：从API获取用户资料和权限信息。</span></li><li><span>功能点：</span>
+<code>fetchUserProfile()</code><span>：从后端API获取用户资料。</span>
+<code>updateProfile()</code><span>：保存更新后的用户资料。</span></li></ul><h6 id='2数据流概述'><span>2.数据流概述</span></h6><p><strong><span>数据采集与上传</span></strong></p><ul><li><p><strong><span>数据源</span></strong><span>：每堂课的教学音视频数据由教室中的摄像头、麦克风等设备采集。</span></p></li><li><p><strong><span>数据内容</span></strong><span>：采集的原始数据包括音频和视频文件，代表课堂的实际情况。</span></p></li><li><p><strong><span>上传流程</span></strong><span>：</span></p><ul><li><span>每堂课结束后，数据采集模块将原始数据打包，并上传至对象存储服务器，便于后续分析。</span></li><li><span>上传的数据会暂存于对象存储服务器中，以便分析服务器可以在预定时间批量处理。</span></li></ul></li></ul><p><strong><span>数据存储与管理</span></strong></p><ul><li><strong><span>存储位置</span></strong><span>：对象存储服务器用于存放原始音视频数据和其他大文件。</span></li><li><strong><span>数据管理</span></strong><span>：每份上传的数据都会生成唯一的文件ID和元数据（如课程ID、教师ID、时间戳等），存储在数据库中，便于索引和检索。</span></li><li><strong><span>管理接口</span></strong><span>：数据管理模块提供数据的上传和检索接口，便于分析服务器读取原始数据。</span></li></ul><h6 id='3-分析流程'><span>3. 分析流程</span></h6><h6 id='方案一-定时分析'><strong><span>方案一： 定时分析</span></strong></h6><ul><li><p><strong><span>触发时间</span></strong><span>：系统在每天（或每周）的固定时间点启动数据分析任务。</span></p></li><li><p><strong><span>数据预处理</span></strong><span>：分析服务器在读取原始数据后，首先对其进行预处理（如音频降噪、视频清洗等）。</span></p></li><li><p><strong><span>分析过程</span></strong><span>：</span></p><ul><li><strong><span>情绪分析</span></strong><span>：识别课堂上的情绪状态，生成情绪分布结果。</span></li><li><strong><span>注意力分析</span></strong><span>：分析学生的注意力集中度和视线分布，评估课堂参与度。</span></li></ul></li><li><p><strong><span>结果存储</span></strong><span>：分析完成后生成的情绪、注意力等分析结果会以结构化数据的形式存储到数据库中，供后续查询和展示。</span></p></li></ul><h6 id='方案二自动菲尼分析任务队列模式'><span>方案二：自动菲尼分析+任务队列模式</span></h6><ul><li><span>触发机制：每节课数据上传完成后，会自动触发数据分析，将任务加入分析队列。</span></li><li><span>队列管理：分析队列按先入先出（FIFO）顺序处理上传的课程数据，确保分析任务依次执行。</span></li><li><span>任务监控：系统会监控分析任务状态，如“等待分析”、“分析中”、“已完成”等，确保任务按顺序处理。</span></li></ul><h6 id='方案三按用户请求触发分析'><span>方案三：按用户请求触发分析</span></h6><ul><li><p><span>触发机制：系统中所有的课程数据上传后仅存储不分析，用户（如管理员或教师）登录并请求查看课程分析结果时，系统实时生成该课程的分析报告。</span></p></li><li><p><span>实现方式：</span></p><ul><li><span>用户点击分析请求后，系统在后台调用分析模块对指定课程的数据进行快速分析。</span></li><li><span>分析结果生成后存储于数据库中，用户可立即查看或下载。</span></li></ul></li></ul><h6 id='4-报告生成'><span>4. 报告生成</span></h6><ul><li><p><strong><span>生成方式</span></strong><span>：数据分析完成后，报告生成模块根据分析结果生成详细的教学质量报告。</span></p></li><li><p><strong><span>报告内容</span></strong><span>：报告包含课堂的关键指标（如注意力、情绪等）及图表（如饼图、折线图）。</span></p></li><li><p><strong><span>存储与访问</span></strong><span>：</span></p><ul><li><span>生成的报告以PDF或其他可视化格式存储在对象存储服务器中，同时在数据库中记录报告的索引和元数据。</span></li><li><span>用户可以通过前端系统访问报告的索引，并选择特定报告下载查看。</span></li></ul></li></ul><h6 id='5-数据展示与用户访问'><span>5. 数据展示与用户访问</span></h6><ul><li><p><strong><span>展示方式</span></strong><span>：前端系统为用户提供多个页面，包括报告总览、详细报告、历史报告等。</span></p></li><li><p><strong><span>数据获取</span></strong><span>：</span></p><ul><li><span>报告总览页面从数据库中获取各课程的关键统计数据，显示教学质量的整体情况。</span></li><li><span>详细报告页面可以按需查询单堂课程的详细数据，生成对应的图表和信息展示。</span></li><li><span>历史报告页面提供报告下载链接，用户可以按时间顺序或课程名称查找并下载特定报告。</span></li></ul></li><li><p><strong><span>用户权限</span></strong><span>：每个用户在访问报告时都会进行权限验证，确保数据的安全性和私密性。</span></p></li></ul><h6 id='数据流示意'><span>数据流示意</span></h6><p><span>课堂数据采集 -&gt; 批量上传 -&gt; 定时分析 -&gt; 报告生成 -&gt; 数据展示与下载</span></p><h6 id='6模块交互和接口说明'><span>6.模块交互和接口说明</span></h6><ol start='' ><li><p><strong><span>数据上传模块</span></strong><span>：</span></p><ul><li><span>接口：</span><code>/upload</code></li><li><span>功能：将采集的数据文件上传到对象存储服务器。</span></li></ul></li><li><p><strong><span>数据分析模块</span></strong><span>：</span></p><ul><li><span>接口：</span><code>/analyze</code></li><li><span>功能：定时批量分析上传的数据，生成情绪、注意力等结果。</span></li></ul></li><li><p><strong><span>报告生成模块</span></strong><span>：</span></p><ul><li><span>接口：</span><code>/report/generate</code></li><li><span>功能：根据分析数据生成报告文件，并存储在对象存储服务器。</span></li></ul></li><li><p><strong><span>数据展示接口</span></strong><span>：</span></p><ul><li><span>接口：</span><code>/reports/summary</code><span>、</span><code>/reports/{courseId}</code><span>、</span><code>/reports/download/{reportId}</code></li><li><span>功能：分别提供总览数据、详细数据和报告下载。</span></li></ul></li></ol><h6 id='系统优势与改进方向'><span>系统优势与改进方向</span></h6><p><strong><span>优势</span></strong></p><ul><li><strong><span>简化设计</span></strong><span>：通过批处理的方式，避免实时处理的复杂性，降低了系统的开发和运维难度。</span></li><li><strong><span>资源优化</span></strong><span>：定时分析减少了系统对计算资源的持续消耗。</span></li><li><strong><span>可扩展性</span></strong><span>：非实时设计更容易增加新的分析维度或功能模块。</span></li></ul><p><strong><span>改进方向</span></strong></p><ul><li><strong><span>实时扩展</span></strong><span>：可以在未来逐步增加实时反馈模块，实现课堂实时数据采集和分析展示。</span></li><li><strong><span>接口优化</span></strong><span>：支持分页或按需加载数据，以优化大规模数据的展示效率。</span></li></ul><h5 id='uml图3---系统前端设计与实时评价反馈机制包含类图与框架图）'><span>UML图3-- 系统前端设计与实时评价反馈机制（包含类图与框架图）</span></h5><p><strong><span>类图：</span></strong></p><p><img src="C:\Users\m1856\AppData\Roaming\Typora\typora-user-images\image-20241103150103875.png" referrerpolicy="no-referrer" alt="image-20241103150103875"></p><p><strong><span>框架图：</span></strong></p><p><img src="C:\Users\m1856\AppData\Roaming\Typora\typora-user-images\image-20241103150507931.png" referrerpolicy="no-referrer" alt="image-20241103150507931"></p><p>&nbsp;</p><h5 id='4）设计过程利用原则--solid原则及应用实例'><span>（4）设计过程利用原则--solid原则及应用实例</span></h5><p><span>	</span><span>1.</span><strong><span>单一职责原则 (SRP)</span></strong><span>在我们的系统中，每个模块或类应专注于一个特定的功能。如评价指标体</span><span>	</span><span>   系构建模块只负责定义和管理评价指标，而多模态数据分析模块专注于处理和分析课堂数据。这样</span><span>	</span><span>   可以确保每个模块的代码更易于理解和维护，任何更改只需在相关模块中进行，而不会影响其他模</span><span>	</span><span>   块。</span></p><ol start='2' ><li><strong><span>开闭原则 (OCP)</span></strong><span>系统设计应允许在不修改现有代码的情况下添加新功能。比方说，评价指标可以通过实现新的接口或继承现有的抽象类来扩展，而不需要修改现有的评价逻辑。这种设计使得系统能够适应未来的需求变化，如引入新的评价标准或分析方法。</span></li><li><strong><span>里氏替换原则 (LSP)</span></strong><span>在继承结构中，确保子类可以替代父类而不改变系统的行为。若有一个基类 </span><code>EvaluationMetric</code><span>，其子类如 </span><code>BehaviorMetric</code><span> 和 </span><code>ContentMetric</code><span> 应该能够在任何使用 </span><code>EvaluationMetric</code><span> 的地方无缝替换。这确保了系统的稳定性和一致性。</span></li><li><strong><span>迪米特法则 (LoD)</span></strong><span>通过降低模块之间的耦合度，系统的灵活性和可维护性得以提高。前端展示模块不需要直接与数据分析模块交互，而是通过中间层或接口进行通信。这减少了模块之间的依赖，使得每个模块可以独立开发和测试。</span></li><li><strong><span>接口隔离原则 (ISP)</span></strong><span>确保每个接口只包含客户端所需的方法。例如，教师评价接口和学生反馈接口应分别定义，以避免不必要的方法实现。这种设计提高了代码的可读性和可理解性，使得每个接口更易于使用和实现。</span></li><li><strong><span>依赖倒置原则 (DIP)</span></strong><span>高层模块不应依赖于低层模块，而是共同依赖于抽象。例数据分析模块和前端展示模块都应依赖于抽象的接口或服务层，而不是直接依赖于具体的实现。这种设计降低了模块之间的紧密耦合，使得系统更易于扩展和维护。通过结合这些原则，我们的高校课堂教学评价系统能够在复杂的功能需求下保持良好的结构和设计，确保系统的长期可持续发展。</span></li></ol><h5 id='5）设计过程利用模型--迭代增量模型'><span>（5）设计过程利用模型--迭代增量模型</span></h5><h6 id='1模型概述'><strong><span>【1】模型概述：</span></strong></h6><p><span>迭代增量模型结合了瀑布模型的结构化方法和敏捷开发的灵活性。它将项目分解为多个增量，每个增量都是一个可交付的产品版本。每个增量在开发过程中都会经历需求分析、设计、实现和测试等阶段。通过不断的迭代和增量交付，项目可以逐步完善和扩展。</span></p><h6 id='2适用性分析'><strong><span>【2】适用性分析</span></strong></h6><ol start='' ><li><strong><span>灵活应对需求变化：</span></strong><span>在高校课堂教学评价系统中，用户需求可能会随着教育政策、技术进步和用户反馈而变化。迭代增量模型允许在每个迭代中重新评估和调整需求，确保系统始终符合用户的最新需求。</span></li><li><strong><span>持续交付和反馈：</span></strong><span>通过每个增量的交付，用户可以在早期阶段就使用系统的部分功能，并提供反馈。这种持续的反馈机制有助于及时发现问题并进行调整，提高系统的用户满意度和实用性。</span></li><li><strong><span>风险管理：</span></strong><span>由于项目的复杂性和技术挑战（如多模态数据分析、实时反馈机制等），迭代增量模型可以通过早期交付和测试来识别和缓解风险。每个增量的成功交付都能降低项目整体的风险。</span></li><li><strong><span>提高生产效率：</span></strong><span>通过分阶段交付，开发团队可以更好地管理资源和时间，专注于当前迭代的目标。这种方法有助于提高开发效率和产品质量。在项目中的应用初始迭代：专注于核心功能的开发，如评价指标体系的构建和基本的多模态数据分析功能。确保系统的基本框架和关键功能能够正常运行。</span></li><li><strong><span>后续迭代：</span></strong><span>逐步引入高级功能，如复杂的跨模态数据分析、实时反馈机制和可视化展示平台。根据用户反馈和需求变化，调整和优化系统功能。</span></li><li><strong><span>持续改进：</span></strong><span>在每个迭代结束后，进行回顾和评估，识别改进点并计划下一次迭代的目标。通过这种方式，系统能够不断演进和优化。结论迭代增量模型为高校课堂教学评价系统的开发提供了灵活性和适应性，能够有效应对项目中的不确定性和变化需求。通过持续的交付和反馈，确保系统的高质量和用户满意度。</span></li></ol><h4 id='三重构复⽤的思考及最终⽅案'><span>三、重构、复⽤的思考及最终⽅案  </span></h4><h5 id='thinking'><span>thinking</span></h5><p><span>软甲总是由简单软件向复杂软件转变，当软件开始由简单软件转变为复杂软件时我们就需要复用、重构，复用、重构是软件发展的必然。在开发高校课堂教学评价系统的过程中，重构和代码复用是确保系统长期可维护性和扩展性的关键策略。</span><strong><span>重构的好处有很多，比如：提高代码质量</span></strong><span>：随着项目的演进，代码可能变得复杂和难以理解。通过重构提高代码的清晰度和简洁性，使其更易于维护和扩展。</span><strong><span>减少重复代码：</span></strong><span>在多模态数据分析和评价指标体系中，可能存在重复的逻辑。重构可以帮助识别和消除这些重复代码，提高代码的可维护性。</span><strong><span>遵循最佳实践：</span></strong><span>通过重构，我们可以调整代码以符合SOLID原则等最佳实践，确保系统的设计更为健壮。</span><strong><span>增加扩展性：</span></strong><span>重构使代码更易于扩展，便于在未来添加新功能，如引入新的数据分析算法或评价指标。</span><strong><span>提高可读性：</span></strong><span>清晰和整洁的代码更容易阅读和理解，尤其在团队合作和知识共享中至关重要。</span><strong><span>修复bug：</span></strong><span>在重构过程中，深入理解代码逻辑，常常能发现隐藏的bug并进行修复。降低维护成本：通过提高代码质量和可读性，重构可以显著降低长期的维护成本。</span></p><h5 id='methods'><span>methods</span></h5><ol start='' ><li><h6 id='运用抽取方法解决大函数问题'><span>运用“抽取方法”解决大函数问题</span></h6><p><span>在多模态数据分析模块中，会出现处理复杂数据的超级大函数。需要：</span></p><p><strong><span>分析函数逻辑：</span></strong><span>在处理视频、音频和文本数据时，识别出功能相对独立的代码段。视频处理中的人脸检测、视线检测和表情识别分别抽取为独立的方法。</span></p><p><strong><span>抽取独立方法：</span></strong><span>将这些代码段抽取为独立的方法，确保每个方法只负责一个特定任务。这不仅提高了代码的可读性，还便于单独测试和维护。</span></p><p><strong><span>参数封装：</span></strong><span>如果方法需要多个参数，考虑将参数封装为对象，以减少方法签名的复杂性。如将视频帧、音频片段和文本段落封装为数据对象，传递给相应的处理方法。</span></p></li><li><h6 id='运用抽取类解决大对象问题'><span>运用“抽取类”解决大对象问题</span></h6><p><span>在系统中，某些类可能会承担过多的职责，例如同时处理数据分析和结果展示:</span></p><p><strong><span>识别职责：</span></strong><span>明确每个类的核心职责，避免职责过于分散。将数据采集、数据处理和结果展示分离为不同的类。</span></p><p><strong><span>抽取新类：</span></strong><span>将不同职责的代码抽取到新的类中,创建独立的DataCollector、DataAnalyzer和ResultPresenter类。</span></p><p><strong><span>模块化设计：</span></strong><span>为前端开发创建独立的组件库，以便于复用和维护,创建可复用的UI组件库来展示分析结果。</span></p></li><li><h6 id='运用抽取父类提高代码复用'><span>运用“抽取父类”提高代码复用</span></h6><p><span>在评价指标体系中，会有多个指标共享相似的逻辑：</span></p><p><strong><span>识别重复代码：</span></strong><span>找出不同指标中重复的逻辑，最常见的有计算平均分、标准差等统计方法。</span></p><p><strong><span>抽取父类：</span></strong><span>将这些重复逻辑抽取到一个父类中，子类通过继承来复用这些逻辑,创建一个BaseMetric类，提供通用的计算方法。</span></p><p><strong><span>使用抽象类或接口：</span></strong><span>定义通用的接口或抽象类，以便于不同指标的实现。思考如定义IMetric接口，确保所有指标类实现必要的方法。</span></p></li><li><h6 id='运用两顶帽子解决新功能的扩展'><span>运用“两顶帽子”解决新功能的扩展</span></h6><p><span>在系统需要引入新功能时：</span></p><p><strong><span>重构现有代码：</span></strong><span>在不添加新功能的前提下，重构代码以适应新功能的扩展。例重构数据分析模块以支持插件式算法扩展。</span></p><p><strong><span>实现新功能：</span></strong><span>在重构完成后，逐步实现新功能，确保系统的稳定性。比如添加新的情感分析算法以增强课堂情绪检测。</span></p></li><li><h6 id='运用设计模式降低代码耦合'><span>运用设计模式降低代码耦合</span></h6><p><span>在系统设计中，模块之间不应有不必要的直接依赖。为了解决这一问题：</span></p><p><strong><span>使用设计模式：</span></strong><span>观察者模式用于实时反馈机制，策略模式用于选择不同的分析算法，降低模块之间的耦合。</span></p><p><strong><span>模块化设计：</span></strong><span>确保每个模块只通过接口与其他模块交互，避免直接依赖，使用接口定义数据分析模块与前端展示模块的交互。</span></p></li><li><h6 id='运用领域驱动设计拥抱变化'><strong><span>运用“领域驱动设计”拥抱变化</span></strong></h6><p><strong><span>分离领域层：</span></strong><span>将业务逻辑与技术实现分离，确保领域层的独立性。领域层应专注于教学评价的核心逻辑，而不依赖于具体的技术实现。</span></p><p><strong><span>解耦技术依赖：</span></strong><span>领域层不应直接依赖于具体的技术实现，如数据库或前端框架。通过使用服务接口和依赖注入，确保领域层的灵活性。</span></p></li><li><h6 id='使用小步快跑的开发模式'><strong><span>使用小步快跑的开发模式</span></strong></h6><p><strong><span>快速迭代：</span></strong><span>每次迭代只引入一个小的功能改进，确保系统的稳定性。比方先实现基本的评价指标计算，再逐步引入高级分析功能。</span></p><p><strong><span>持续验证：</span></strong><span>在每个迭代中进行功能验证，确保新功能的正确性。通过自动化测试和用户反馈，及时调整和优化系统。</span></p></li></ol><h4 id='四uml图重现'><span>四、UML图重现</span></h4><h6 id='多模态课堂分析uml'><span>多模态课堂分析uml</span></h6><p><img src="C:/Users/m1856/Desktop/mywork/mywork/Untitled diagram-2024-11-01-025123.png" referrerpolicy="no-referrer" alt="Untitled diagram-2024-11-01-025123"></p><p><img src="C:\Users\m1856\Desktop\mywork\mywork\Untitled diagram-2024-11-01-024815.png" referrerpolicy="no-referrer" alt="Untitled diagram-2024-11-01-024815"></p><h6 id='系统前端设计与实时评价反馈机制uml'><span>系统前端设计与实时评价反馈机制uml</span></h6><p><img src="C:\Users\m1856\AppData\Roaming\Typora\typora-user-images\image-20241103150103875.png" referrerpolicy="no-referrer" alt="image-20241103150103875"></p><p><img src="C:\Users\m1856\AppData\Roaming\Typora\typora-user-images\image-20241103150507931.png" referrerpolicy="no-referrer" alt="image-20241103150507931"></p><h4 id='五可能出现的代码质量问题及相关解决⽅案'><span>五、可能出现的代码质量问题及相关解决⽅案  </span></h4><ol start='' ><li><h4 id='代码质量问题'><span>代码质量问题</span></h4><p><span>1.1 </span><strong><span>缺乏严格的编码规范和标准问题</span></strong><span>：团队成员可能会使用不同的编码风格，导致代码不一致，难以阅读和维护。</span></p><p><strong><span>解决方案：</span></strong><span>制定并遵循样式指南：采用行业标准的样式指南，如</span><code>Airbnb</code><span>的JavaScript风格指南，确保代码风格一致。使用</span><code>Linters</code><span>：配置</span><code>ESLint</code><span>、</span><code>TSlint</code><span>等工具自动检查代码风格，确保代码符合预定义的规范。</span></p><p><strong><span>1.2 不合理的算法设计问题：</span></strong><span>算法设计不合理可能导致性能问题和资源浪费。</span></p><p><strong><span>解决方案：</span></strong><span>代码审查：定期进行代码审查，识别并优化低效的算法。性能测试：使用性能测试工具识别瓶颈，优化关键路径的算法。</span></p><p><strong><span>1.3 潜在的漏洞和错误难以发现和修复问题：</span></strong><span>代码中可能存在未被发现的漏洞和错误，影响系统的稳定性和安全性。</span><strong><span>解决方案：</span></strong><span>静态代码分析：使用</span><code>SonarQube</code><span>等工具进行静态代码分析，识别潜在的漏洞和错误。持续集成：在</span><code>CI/CD</code><span>管道中集成自动化测试，确保每次代码变更都经过严格的测试。</span></p></li><li><h4 id='需求管理问题'><span>需求管理问题</span></h4><p><strong><span>2.1 不清晰、不完整或不准确的需求定义问题：</span></strong><span>需求不明确可能导致开发偏离目标，增加返工成本。</span></p><p><strong><span>解决方案：</span></strong><span>需求文档：详细记录需求文档，确保所有团队成员对需求有一致的理解。需求评审：在开发前进行需求评审，确保需求的清晰性和完整性。</span></p><p><strong><span>2.2 需求变更导致开发延迟和重复劳动问题：</span></strong><span>频繁的需求变更可能导致开发计划被打乱，增加开发成本。</span></p><p><strong><span>解决方案：</span></strong><span>敏捷开发：采用敏捷开发方法，灵活应对需求变更。迭代计划：在每个迭代开始前锁定需求，减少中途变更。</span></p></li><li><h4 id='测试困境'><span>测试困境</span></h4><p><strong><span>3.1 手动测试工作量大，周期长，容易出错问题：</span></strong><span>手动测试耗时且容易遗漏问题，影响发布周期。</span></p><p><strong><span>解决方案：</span></strong><span>自动化测试：使用</span><code>Selenium</code><span>、</span><code>JUnit</code><span>等工具进行自动化测试，减少手动测试工作量。测试覆盖率：确保自动化测试覆盖率达到80%以上，涵盖关键功能和边界情况。</span></p><p><strong><span>3.2 自动化测试覆盖率不足，无法全面检测软件功能和性能问题：</span></strong><span>自动化测试覆盖率低可能导致关键问题未被发现。</span></p><p><strong><span>解决方案：</span></strong><span>测试驱动开发（</span><code>TDD</code><span>）：在开发过程中编写测试用例，确保新功能的测试覆盖。持续测试：在</span><code>CI/CD</code><span>管道中集成自动化测试，确保每次代码变更都经过严格的测试。通过识别和解决这些代码质量问题，我们可以确保高校课堂教学评价系统的高质量和稳定性，支持系统的长期可持续发展。</span></p></li></ol></div></div>
+</body>
+</html>
